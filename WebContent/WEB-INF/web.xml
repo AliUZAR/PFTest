@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	
+	<display-name>Harmony ICT</display-name>
+	
+	<session-config>
+    	<session-timeout>30</session-timeout>
+ 	</session-config>
+	
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Production</param-value>
+	</context-param>
+  
+	<context-param>
+		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+		<param-value>server</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>org.apache.myfaces.USE_ENCRYPTION</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	
+	<welcome-file-list>
+		<welcome-file>test.xhtml</welcome-file>
+	</welcome-file-list>
+	
+	<filter>
+		<filter-name>RedirectFilter</filter-name>
+		<filter-class>com.harmony.ict.workorder.servlets.RedirectFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>    
+		<filter-name>RedirectFilter</filter-name>   
+		<url-pattern>/*</url-pattern>    
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>  
+	</filter-mapping> 
+		
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+	
+    <servlet>
+        <servlet-name>Push Servlet</servlet-name>
+        <servlet-class>org.primefaces.push.PushServlet</servlet-class>
+		<async-supported>true</async-supported>
+		<load-on-startup>1</load-on-startup>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>Push Servlet</servlet-name>
+        <url-pattern>/primepush/*</url-pattern>
+    </servlet-mapping>
+    
+	<context-param>
+	    <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+	    <param-value>true</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>javax.faces.CONFIG_FILES</param-name>
+		<param-value>/WEB-INF/faces-config.xml</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>/WEB-INF/log4j.properties</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/main-context.xml</param-value>
+	</context-param>
+	
+	<filter>
+   		 <filter-name>PrimeFaces FileUpload Filter</filter-name>
+   		 <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+    	<filter-name>PrimeFaces FileUpload Filter</filter-name>
+    	<servlet-name>Faces Servlet</servlet-name>
+	</filter-mapping>
+
+	<context-param> 
+	    <param-name>primefaces.UPLOADER</param-name> 
+	    <param-value>commons</param-value> 
+	</context-param>
+	
+	<context-param>
+		<param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
+		<param-value>6LdKtA4UAAAAAH8tgGyeKMKmrOkEoN_dDYy93Nty</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
+		<param-value>6LdKtA4UAAAAAC2v2k0W0ua-ZCiJOozsmZAhrG_H</param-value>
+	</context-param>
+	
+</web-app>
